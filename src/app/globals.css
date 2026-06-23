@@ -1,26 +1,99 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Green and White Theme - Default */
+  --background: #022c22; /* Deep Emerald Background */
+  --foreground: #ffffff; /* White Text */
+  
+  --primary: #10b981; /* Vibrant Emerald Accent */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #064e3b; /* Darker green for cards/sections */
+  --secondary-foreground: #ffffff;
+  
+  --muted: #064e3b;
+  --muted-foreground: #a7f3d0; /* Light green for muted text */
+  
+  --accent: #047857;
+  --accent-foreground: #ffffff;
+  
+  --border: #065f46;
+  --input: #065f46;
+  --ring: #10b981;
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark Mode (Even deeper green) */
+  --background: #011812; 
+  --foreground: #ffffff;
+  
+  --primary: #34d399; 
+  --primary-foreground: #022c22;
+  
+  --secondary: #022c22; 
+  --secondary-foreground: #ffffff;
+  
+  --muted: #022c22;
+  --muted-foreground: #6ee7b7;
+  
+  --accent: #064e3b;
+  --accent-foreground: #ffffff;
+  
+  --border: #064e3b;
+  --input: #064e3b;
+  --ring: #34d399;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
   }
 }
 
-body {
+/* Hide scrollbar for clean premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }

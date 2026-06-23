@@ -1,7 +1,7 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Tv } from 'lucide-react';
+import { Tv, Download } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 const HeroScene = dynamic(() => import('@/components/3d/hero-scene'), { ssr: false });
@@ -23,7 +23,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-x-hidden bg-background pt-32 pb-20 lg:pt-40">
       <div className="absolute inset-0 z-0">
         <HeroScene />
       </div>
@@ -31,7 +31,7 @@ export function Hero() {
       {/* Overlay gradient to blend the bottom edge if needed */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-transparent to-background/50" />
       
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pointer-events-none mt-12">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-4 md:mt-12 w-full flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,13 +66,29 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-8 flex items-center justify-center pointer-events-auto"
+          >
+            <a 
+              href="/Abubakar Jamilu Bashir CV.pdf" 
+              download
+              target="_blank"
+              className="px-8 py-3.5 bg-primary text-primary-foreground rounded-full hover:opacity-90 transition-all font-semibold shadow-lg shadow-primary/20 flex items-center gap-2 hover:-translate-y-1"
+            >
+              <Download size={20} /> Download My CV
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
             className="mt-12 flex items-center justify-center gap-2 text-sm md:text-base font-semibold text-primary bg-primary/10 px-6 py-2.5 rounded-full border border-primary/20 mx-auto w-fit shadow-lg shadow-primary/5"
           >
             <Tv size={20} /> Featured Programs with Tambari TV
           </motion.div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8 w-full max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8 w-full max-w-4xl mx-auto pointer-events-auto">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
